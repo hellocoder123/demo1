@@ -5,7 +5,7 @@
     <class name="edu.xidian.bos.domain.Region" table="bc_region" >
         <id name="id" type="java.lang.String">
             <column name="id" length="32" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <property name="province" type="java.lang.String">
             <column name="province" length="50" />

@@ -2,6 +2,7 @@ package edu.xidian.bos.web.action;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,14 +10,19 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import edu.xidian.bos.domain.Region;
 import edu.xidian.bos.service.IRegionService;
+import edu.xidian.bos.utils.PageBean;
 import edu.xidian.bos.utils.PinYin4jUtils;
 import edu.xidian.bos.web.action.base.BaseAction;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 /**      
 * @Description: TODO 区域管理
@@ -33,6 +39,11 @@ public class RegionAction extends BaseAction<Region>{
 		private IRegionService regionService;
 		public void setRegionFile(File regionFile) {
 			this.regionFile = regionFile;
+		}
+		
+		public String add() {
+			regionService.save(model);
+			return LIST;
 		}
 		
 		/**
@@ -78,6 +89,25 @@ public class RegionAction extends BaseAction<Region>{
 			regionService.saveBatch(regionList);
 			return NONE;
 		}
+		
+		
 
+
+		
+		/*
+		 * 分页查询
+		 */
+		public String pageQuery() throws IOException {
+			
+			regionService.pageQuery(pageBean);
+			this.java2Json(pageBean, 
+						new String[]{"currentPage","detachedCriteria","pageSize","subareas"});
+			return NONE;
+		}
+		public String listajax() {
+			List<Region> list = regionService.findAll();
+			this.java2Json(list, new String[]{"subareas"});
+			return NONE;
+		}
 
 }

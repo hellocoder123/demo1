@@ -37,7 +37,7 @@
 	}
 	
 	function doDelete(){
-		alert("删除...");
+		alter("删除...");
 	}
 	
 	//工具栏
@@ -111,7 +111,7 @@
 			pageList: [30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/region.json",
+			url : "regionAction_pageQuery.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
@@ -150,10 +150,21 @@
 			<div class="datagrid-toolbar">
 				<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
 			</div>
+			<script type="text/javascript">
+			$("#save").click(function(){
+				//表单校验，如果通过，提交表单
+				var v = $("#addRegionForm").form("validate");
+				if(v){
+					//$("#addStaffForm").form("submit");
+					$("#addRegionForm").submit();
+				}
+			});
+
+			</script>
 		</div>
 		
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="addRegionForm" method="post" action="regionAction_add.action">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">区域信息</td>
