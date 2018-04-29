@@ -173,7 +173,7 @@
 	}
 	// 版权信息
 	function showAbout(){
-		$.messager.alert("宅急送 v1.0","管理员邮箱: zqx@itcast.cn");
+		$.messager.alert("宅急送 v1.0","管理员邮箱:sywangprog@163.com");
 	}
 </script>
 </head>
@@ -182,7 +182,7 @@
 		style="height:80px;padding:10px;background:url('./images/header_bg.png') no-repeat right;">
 		<div id="sessionInfoDiv"
 			style="position: absolute;right: 5px;top:10px;">
-			[<strong>超级管理员</strong>]，欢迎你！
+			[<strong>${loginUser.username }</strong>]，欢迎你！
 		</div>
 		<div style="position: absolute; right: 5px; bottom: 10px; ">
 			<a href="javascript:void(0);" class="easyui-menubutton"

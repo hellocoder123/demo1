@@ -1,6 +1,7 @@
 package edu.xidian.bos.web.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -68,6 +69,16 @@ public class StaffAction extends BaseAction<Staff> {
 			staffService.update(staff);
 			return LIST;
 		}
+		
+		/**
+		 * 查询所有未删除的取派员，返回json
+		 */
+		public String listajax(){
+			List<Staff> list = staffService.findListNotDelete();
+			this.java2Json(list, new String[]{"decidedzones","telephone","haspda","deltag","station","standard"});
+			return NONE;
+		}
+
 
 		
 		

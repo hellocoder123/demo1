@@ -3,6 +3,8 @@ package edu.xidian.bos.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 import edu.xidian.bos.utils.PageBean;
 
 /**      
@@ -18,6 +20,7 @@ public interface IBaseDao<T> {
 	public void saveOrUpdate(T entity);
 	public T findById(Serializable id);
 	public List<T> findAll();
+	public List<T> findByCriteria(DetachedCriteria detachedCriteria);
 	public void executeUpdate(String queryName,Object...objects);
 	public void pageQuery(PageBean pageBean);
 }

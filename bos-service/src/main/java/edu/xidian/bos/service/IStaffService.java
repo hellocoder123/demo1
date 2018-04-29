@@ -1,5 +1,7 @@
 package edu.xidian.bos.service;
 
+import java.util.List;
+
 import edu.xidian.bos.domain.Staff;
 import edu.xidian.bos.utils.PageBean;
 
@@ -19,4 +21,6 @@ public interface IStaffService {
 	public Staff findById(String id);
 
 	public void update(Staff staff);
+
+	public List<Staff> findListNotDelete();
 }
