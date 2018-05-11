@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import edu.xidian.bos.domain.Region;
 import edu.xidian.bos.domain.Subarea;
 import edu.xidian.bos.service.ISubareaService;
+import edu.xidian.bos.service.impl.DecidedzoneServiceImpl;
 import edu.xidian.bos.utils.FileUtils;
 import edu.xidian.bos.utils.PinYin4jUtils;
 import edu.xidian.bos.web.action.base.BaseAction;
@@ -175,6 +176,15 @@ public class SubareaAction extends BaseAction<Subarea>{
 	public String listajax() {
 		List<Subarea> list = subareaService.findListNotAssociation();
 		this.java2Json(list, new String[] {"decidedzone","region"});
+		return NONE;
+	}
+	private String decidedzoneId;
+	/*
+	 * 根据定区id查询关联的分区
+	 */
+	public String findListByDecidedzoneId() {
+		List<Subarea> list = subareaService.findListByDecidedzoneId(decidedzoneId);
+		this.java2Json(list, new String[] {"decidedzone","subareas"});
 		return NONE;
 	}
 

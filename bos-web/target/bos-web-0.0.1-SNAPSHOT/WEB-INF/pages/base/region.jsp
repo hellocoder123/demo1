@@ -26,6 +26,7 @@
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.ocupload-1.1.2.js"></script>
 <script type="text/javascript">
 	function doAdd(){
 		$('#addRegionWindow').window("open");
@@ -36,7 +37,7 @@
 	}
 	
 	function doDelete(){
-		alert("删除...");
+		alter("删除...");
 	}
 	
 	//工具栏
@@ -110,12 +111,18 @@
 			pageList: [30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/region.json",
+			url : "regionAction_pageQuery.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
 		});
 		
+		
+		//页面加载完成后，调用OCUpload插件的方法
+		$("#button-import").upload({
+			action:'regionAction_importXls.action',
+			name:'regionFile'
+		});
 		// 添加、修改区域窗口
 		$('#addRegionWindow').window({
 	        title: '添加修改区域',
@@ -143,10 +150,21 @@
 			<div class="datagrid-toolbar">
 				<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
 			</div>
+			<script type="text/javascript">
+			$("#save").click(function(){
+				//表单校验，如果通过，提交表单
+				var v = $("#addRegionForm").form("validate");
+				if(v){
+					//$("#addStaffForm").form("submit");
+					$("#addRegionForm").submit();
+				}
+			});
+
+			</script>
 		</div>
 		
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="addRegionForm" method="post" action="regionAction_add.action">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">区域信息</td>

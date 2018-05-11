@@ -184,7 +184,12 @@
 	        resizable:false
 	    });
 		
+		
+
+		
 	});
+	
+	
 
 	//数据表格绑定的双击行事件对应的函数
 	function doDblClickRow(rowIndex, rowData){

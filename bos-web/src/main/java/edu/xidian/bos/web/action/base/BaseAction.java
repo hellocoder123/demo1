@@ -13,6 +13,7 @@ import edu.xidian.bos.utils.PageBean;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
 
 /**      
 * @Description: TODO 表现层代码抽取实现
@@ -54,6 +55,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	
 	public void java2Json(List o ,String[] exclueds){
 		JsonConfig jsonConfig = new JsonConfig();
+//		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		//指定哪些属性不需要转json
 		jsonConfig.setExcludes(exclueds);
 		String json = JSONArray.fromObject(o,jsonConfig).toString();
