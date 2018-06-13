@@ -210,6 +210,11 @@
 			<div title="基本功能" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
 				<ul id="treeMenu" class="ztree"></ul>
 			</div>
+			
+			<div title="取派查询功能" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
+				<ul id="treeMenu" class="ztree"></ul>
+			</div>
+			
 			<div title="系统管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">  
 				<ul id="adminMenu" class="ztree"></ul>
 			</div>
